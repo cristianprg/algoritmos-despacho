@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Grafico_SRTF } from "./Grafico_SRTF";
+import { Grafico_SRTF } from "./charts/Grafico_SRTF";
 
 export function SRTF() {
     const [procesos, setProcesos] = useState([{ id: 1, nombre: "Proceso 1", rafaga: 0, tiempoLlegada: 0 }]);

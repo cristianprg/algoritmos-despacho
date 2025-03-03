@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Grafico_Prioridad } from "./Grafico_Prioridad";
+import { Grafico_Prioridad } from "./charts/Grafico_Prioridad";
 
 export function PRIORIDAD() {
     const [procesos, setProcesos] = useState([{ id: 1, nombre: "Proceso 1", rafaga: 0, tiempoLlegada: 0, prioridad: 0}]);

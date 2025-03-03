@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Grafico_SJF } from "./Grafico_SJF";
+import { Grafico_SJF } from "./charts/Grafico_SJF";
 
 export function SJF() {
     const [procesos, setProcesos] = useState([{ id: 1, nombre: "Proceso 1", rafaga: 0, tiempoLlegada: 0 }]);

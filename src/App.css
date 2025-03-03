@@ -99,3 +99,10 @@ table{
 .form_button{
   margin-top: 16px;
 }
+
+.chart-info{
+  background-color: #1a1a1a;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 8px;
+}

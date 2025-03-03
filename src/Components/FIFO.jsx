@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Grafico_FIFO } from "./Grafico_FIFO";
+import { Grafico_FIFO } from "./charts/Grafico_FIFO";
 
 export function FIFO() {
     const [procesos, setProcesos] = useState([{ id: 1, nombre: "Proceso 1", rafaga: 0, tiempoLlegada: 0 }]);

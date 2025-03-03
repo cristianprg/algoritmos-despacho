@@ -1,25 +1,34 @@
 import React from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 
-export function Grafico_FIFO({ procesos }) {
-    // Ordenar procesos por tiempo de llegada
+export function Grafico_Prioridad({ procesos }) {
+    // Ordenar procesos por tiempo de llegada inicialmente
     const procesosOrdenados = [...procesos].sort((a, b) => a.tiempoLlegada - b.tiempoLlegada);
     
     let tiempoActual = 0;
     let ganttData = [];
     let tiempos = [];
-    
-    procesosOrdenados.forEach(proceso => {
-        // Si el tiempo actual es menor al tiempo de llegada, avanzar el reloj
-        if (tiempoActual < Number(proceso.tiempoLlegada)) {
-            tiempoActual = Number(proceso.tiempoLlegada);
-        }
+    let procesosPendientes = [...procesosOrdenados];
+
+    while (procesosPendientes.length > 0) {
+        // Filtrar procesos que han llegado hasta el tiempo actual
+        let disponibles = procesosPendientes.filter(p => Number(p.tiempoLlegada) <= tiempoActual);
         
+        if (disponibles.length === 0) {
+            // Si no hay procesos disponibles, avanzar al siguiente proceso más cercano
+            tiempoActual = Math.min(...procesosPendientes.map(p => Number(p.tiempoLlegada)));
+            disponibles = procesosPendientes.filter(p => Number(p.tiempoLlegada) <= tiempoActual);
+        }
+
+        // Seleccionar el proceso con la mayor prioridad (suponiendo que un valor menor indica mayor prioridad)
+        disponibles.sort((a, b) => a.prioridad - b.prioridad);
+        let proceso = disponibles[0];
+
         const inicio = tiempoActual;
         const fin = inicio + Number(proceso.rafaga);
         const tiempoEspera = inicio - Number(proceso.tiempoLlegada);
         const tiempoSistema = fin - Number(proceso.tiempoLlegada);
-        
+
         ganttData.push({
             nombre: proceso.nombre,
             inicio: inicio,
@@ -32,17 +41,18 @@ export function Grafico_FIFO({ procesos }) {
             tiempoEspera,
             tiempoSistema
         });
-        
+
         tiempoActual = fin;
-    });
+        procesosPendientes = procesosPendientes.filter(p => p !== proceso);
+    }
 
     // Calcular promedios
     const promedioEspera = tiempos.reduce((sum, p) => sum + p.tiempoEspera, 0) / tiempos.length;
     const promedioSistema = tiempos.reduce((sum, p) => sum + p.tiempoSistema, 0) / tiempos.length;
 
     return (
-        <div>
-            <h2>Gráfica de Gantt - FIFO</h2>
+        <div className="chart-info">
+            <h2>Gráfica de Gantt - Prioridad</h2>
             <BarChart width={800} height={400} data={ganttData} layout="vertical" margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis type="number" domain={[0, tiempoActual]} />

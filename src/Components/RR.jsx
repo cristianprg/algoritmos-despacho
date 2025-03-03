@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Grafico_RR } from "./Grafico_RR";
+import { Grafico_RR } from "./charts/Grafico_RR";
 
 export function RR() {
     const [procesos, setProcesos] = useState([{ id: 1, nombre: "Proceso 1", rafaga: 0, tiempoLlegada: 0 }]);

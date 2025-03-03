@@ -1,7 +1,7 @@
 import React from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 
-export function Grafico_Prioridad({ procesos }) {
+export function Grafico_SJF({ procesos }) {
     // Ordenar procesos por tiempo de llegada inicialmente
     const procesosOrdenados = [...procesos].sort((a, b) => a.tiempoLlegada - b.tiempoLlegada);
     
@@ -20,8 +20,8 @@ export function Grafico_Prioridad({ procesos }) {
             disponibles = procesosPendientes.filter(p => Number(p.tiempoLlegada) <= tiempoActual);
         }
 
-        // Seleccionar el proceso con la mayor prioridad (suponiendo que un valor menor indica mayor prioridad)
-        disponibles.sort((a, b) => a.prioridad - b.prioridad);
+        // Seleccionar el proceso con la ráfaga más corta
+        disponibles.sort((a, b) => a.rafaga - b.rafaga);
         let proceso = disponibles[0];
 
         const inicio = tiempoActual;
@@ -51,8 +51,8 @@ export function Grafico_Prioridad({ procesos }) {
     const promedioSistema = tiempos.reduce((sum, p) => sum + p.tiempoSistema, 0) / tiempos.length;
 
     return (
-        <div>
-            <h2>Gráfica de Gantt - Prioridad</h2>
+        <div className="chart-info">
+            <h2>Gráfica de Gantt - SJF</h2>
             <BarChart width={800} height={400} data={ganttData} layout="vertical" margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis type="number" domain={[0, tiempoActual]} />

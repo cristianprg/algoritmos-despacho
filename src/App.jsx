@@ -76,6 +76,12 @@ function App() {
         </div>
 
       }
+
+      <footer>
+        <h6>
+          By: Crisitan David Lopez Hurtado
+        </h6>
+      </footer>
     </>
   )
 }

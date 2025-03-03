@@ -50,7 +50,7 @@ export function Grafico_RR({ procesos, quantum }) {
     const promedioSistema = Object.values(tiempos).reduce((sum, p) => sum + p.tiempoSistema, 0) / procesos.length;
     
     return (
-        <div>
+        <div className="chart-info">
             <h2>Gráfica de Gantt - RR</h2>
             <BarChart width={800} height={400} data={ganttData} layout="vertical" margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" />
