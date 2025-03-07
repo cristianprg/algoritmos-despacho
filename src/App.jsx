@@ -1,16 +1,11 @@
-import { FIFO } from "./Components/FIFO"
-import { SJF } from "./Components/SJF"
 import { useState } from "react"
-import { PRIORIDAD } from "./Components/PIRORIDAD"
-import { SRTF } from "./Components/SRTF"
-import { RR } from "./Components/RR"
 import { Aside } from "./Components/Aside"
 import './App.css'
 import { Chart_template } from "./chart_template"
 
 function App() {
 
-  const [procesos, setProcesos] = useState([{ id: 1, nombre: "Proceso 1", rafaga: 0, tiempoLlegada: 0 }]);
+  const [procesos, setProcesos] = useState([{ id: 1, nombre: "Proceso 1", rafaga: 0, tiempoLlegada: 0, prioridad: 0 }]);
   const [mostrarGrafico, setMostrarGrafico] = useState(false);
   const [form, setForm] = useState(null)
 

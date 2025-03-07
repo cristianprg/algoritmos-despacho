@@ -22,7 +22,7 @@ export function Chart_template({ procesos, mostrarGrafico, form }) {
 
     return (
         <div>
-            <h2>Gráfico {form}</h2>
+            {mostrarGrafico && <h2>Gráfica de Gantt - {form}</h2>}
             {mostrarGrafico && selectAlgorithm(form)}
         </div>
     );

@@ -11,11 +11,13 @@ export function Aside({procesos, setProcesos, setMostrarGrafico, form}) {
     };
 
     const actualizarProceso = (id, campo, valor) => {
-        setProcesos((prevProcesos) =>
-            prevProcesos.map((proceso) =>
-                proceso.id === id ? { ...proceso, [campo]: valor } : proceso
-            )
-        );
+        if (valor >= 0 || valor === "") {
+            setProcesos((prevProcesos) =>
+                prevProcesos.map((proceso) =>
+                    proceso.id === id ? { ...proceso, [campo]: valor } : proceso
+                )
+            );
+        }
     };
 
     const handleSubmit = (e) => {
@@ -44,23 +46,29 @@ export function Aside({procesos, setProcesos, setMostrarGrafico, form}) {
                             <input 
                                 type="number" 
                                 value={proceso.rafaga} 
-                                onChange={(e) => actualizarProceso(proceso.id, "rafaga", Number(e.target.value))}
+                                onChange={(e) => actualizarProceso(proceso.id, "rafaga", e.target.value === "" ? "" : Number(e.target.value))}
                                 className="input_cell"
+                                min="0"
+                                onWheel={(e) => e.target.blur()}
                             />
                             <label className="label_enter">Tiempo de llegada</label>
                             <input 
                                 type="number" 
                                 value={proceso.tiempoLlegada} 
-                                onChange={(e) => actualizarProceso(proceso.id, "tiempoLlegada", Number(e.target.value))}
+                                onChange={(e) => actualizarProceso(proceso.id, "tiempoLlegada", e.target.value === "" ? "" : Number(e.target.value))}
                                 className="input_cell" 
+                                min="0"
+                                onWheel={(e) => e.target.blur()}
                             />
                             <label className="label_enter">Prioridad</label>
                             <input 
                                 type="number" 
                                 value={proceso.prioridad} 
-                                onChange={(e) => actualizarProceso(proceso.id, "prioridad", Number(e.target.value))}
+                                onChange={(e) => actualizarProceso(proceso.id, "prioridad", e.target.value === "" ? "" : Number(e.target.value))}
                                 className="input_cell"  
                                 disabled={form !== "PRIORIDAD"}
+                                min="0"
+                                onWheel={(e) => e.target.blur()}
                             />
                         </div>
                     </div>
