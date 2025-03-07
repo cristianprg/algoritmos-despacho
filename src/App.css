@@ -5,48 +5,6 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-ul{
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-}
-
 table{
   justify-self: center;
 }
@@ -61,17 +19,19 @@ table{
   margin-bottom: 16px;
 }
 
-.main_form{
+.main_form {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  flex-grow: 1; /* Para que los procesos crezcan correctamente */
 }
 
-.form_process_container{
+.form_process_container {
   border: 1px solid #ccc;
   padding: 16px;
   border-radius: 8px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #555; /* Para diferenciar los procesos */
 }
 
 .process_name{
@@ -79,25 +39,59 @@ table{
   font-weight: 600;
 }
 
-.sub_form{
+.sub_form {
   display: flex;
   flex-direction: column;
   gap: 8px;
   margin-top: 8px;
+  align-items: flex-start; /* Asegura que los elementos queden alineados a la izquierda */
+  width: 100%;
 }
 
 .label_enter{
   font-weight: 500;
 }
 
-.input_cell{
+.input_cell {
+  width: 90%; /* Asegura que los inputs ocupen todo el ancho disponible */
   border: 1px solid #ccc;
   padding: 8px;
   border-radius: 4px;
+  background-color: #222; /* Ajusta el color de fondo según tu diseño */
+  color: white;
+}
+
+button {
+  background-color: #000080; 
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.nav_button {
+  flex-grow: 1; /* Hace que todos los botones ocupen el mismo espacio */
+  text-align: center;
+  padding: 10px 0; /* Ajusta el espaciado interno */
+  border: none;
+  background-color: #000080;
+  color: white;
+}
+
+.nav_button:hover, .nav_button:focus {
+  background-color: #000097;
+  border-top: #ffffff 1px solid;
 }
 
 .form_button{
   margin-top: 16px;
+}
+
+.form_button:hover{
+  background-color: #333; /* Ajusta el color de fondo según tu diseño */
 }
 
 .chart-info{
@@ -105,4 +99,237 @@ table{
   margin-top: 20px;
   padding: 20px;
   border-radius: 8px;
+  margin-left: 50px;
+}
+
+
+/* TOPNAV */
+
+.top-nav{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #1a1a1a;
+  color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.algorithms {
+  display: flex;
+  justify-content: space-between; /* O prueba space-evenly */
+  flex-grow: 1;
+  width: 100%;
+}
+
+
+/* SIDE NAV */
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  background-color: #444444;
+  color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 197px;
+  left: 0;
+  width: 300px; 
+  height: calc(100vh - 216.19px); 
+  z-index: 1000;
+  overflow-y: auto; 
+}
+
+.processButtons{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* COLORS */
+
+body {
+  background-color: #f0f8ff; 
+  color: #000080; 
+}
+
+table {
+  color: #000080; 
+}
+
+.outer {
+  background-color: #e6f2ff;
+}
+
+.form_process_container {
+  background-color: #e6f2ff; 
+  border-color: #000080; 
+}
+
+.input_cell {
+  background-color: #ffffff; 
+  color: #000080; 
+  border-color: #000080; 
+}
+
+.chart-info {
+  background-color: #e6f2ff; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-radius: 8px;
+  position: absolute; /* O usa relative según tu estructura */
+  top: 197px; /* Debe coincidir con el .aside */
+  left: 320px; /* Deja margen después del .aside */
+  width: calc(95% - 340px); /* Ajusta el ancho restando el .aside y un poco de margen */
+  overflow-x: hidden;
+}
+
+
+.top-nav {
+  background-color: #000080; 
+  color: #ffffff;
+}
+
+.aside {
+  background-color: #e6f2ff; 
+  color: #000080; 
+}
+
+.main_form{
+  background-color: #e6f2ff
+}
+
+
+/* Chart */
+
+.chart-container {
+  text-align: center;
+  background-color: #dde6f1;
+  padding: 20px;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th, table td {
+  border: 1px solid #000080;
+  padding: 12px;
+  text-align: left;
+}
+
+table th {
+  background-color: #000080;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: #e6f2ff;
+}
+
+table tr:hover {
+  background-color: #dde6f1;
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 1280px) {
+  #root {
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .aside {
+    width: 250px;
+    height: calc(100vh - 216.19px);
+  }
+
+  .chart-info {
+    left: 270px;
+    width: calc(100% - 290px);
+  }
+}
+
+@media (max-width: 768px) {
+  .top-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .algorithms {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .aside {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+  .chart-info {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .main_form {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main_title {
+    font-size: 18px;
+  }
+
+  .process_name {
+    font-size: 16px;
+  }
+
+  .input_cell {
+    width: 100%;
+  }
+
+  button {
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+  }
+
+  .nav_button {
+    padding: 8px 0;
+  }
+
+  .form_button {
+    margin-top: 12px;
+  }
+
+  .chart-container {
+    padding: 10px;
+  }
+
+  table th, table td {
+    padding: 8px;
+  }
 }

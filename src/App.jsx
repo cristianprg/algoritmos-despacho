@@ -1,13 +1,17 @@
 import { FIFO } from "./Components/FIFO"
 import { SJF } from "./Components/SJF"
 import { useState } from "react"
-import './App.css'
 import { PRIORIDAD } from "./Components/PIRORIDAD"
 import { SRTF } from "./Components/SRTF"
 import { RR } from "./Components/RR"
+import { Aside } from "./Components/Aside"
+import './App.css'
+import { Chart_template } from "./chart_template"
 
 function App() {
 
+  const [procesos, setProcesos] = useState([{ id: 1, nombre: "Proceso 1", rafaga: 0, tiempoLlegada: 0 }]);
+  const [mostrarGrafico, setMostrarGrafico] = useState(false);
   const [form, setForm] = useState(null)
 
   const handleClickFIFO = () => {
@@ -19,69 +23,29 @@ function App() {
   }
 
   const handleClickPRIORIDAD = () => {
-    setForm('PRIO')
+    setForm('PRIORIDAD')
   }
 
   const handleClickSRTF = () => {
     setForm('SRTF')
   }
 
-  const handleClickRR = () => {
-    setForm('RR')
-  }
-
-  const controlForm = () => {
-    switch(form){
-      case 'FIFO':
-        return <FIFO />
-      case 'SJF':
-        return  <SJF />
-      case 'PRIO':
-        return <PRIORIDAD />
-      case 'SRTF':
-        return <SRTF />
-      case 'RR':
-        return  <RR />
-      default: break
-    }
-  }
-
   return (
     <>
-      <h1>Selector de algoritmos</h1>
-      <ul>
-        <li>
-          <button onClick={handleClickFIFO}>FIFO</button>
-        </li>
-        <li>
-          <button onClick={handleClickSJF}>SJF</button>
-        </li>
-        <li>
-          <button onClick={handleClickPRIORIDAD}>Piroridad</button>
-        </li>
-        <li>
-          <button onClick={handleClickSRTF}>SRTF</button>
-        </li>
-        <li>
-          <button onClick={handleClickRR}>RR</button>
-        </li>
-      </ul>
-      {
-        form && 
-
-        <div>
-          {
-            controlForm(form)
-          }
+      <nav className="top-nav">
+        <h1>SELECTOR DE ALGORITMOS</h1>
+        <div className="algorithms">
+            <button onClick={handleClickFIFO} className="nav_button">FIFO</button>
+            <button onClick={handleClickSJF} className="nav_button">SJF</button>
+            <button onClick={handleClickPRIORIDAD} className="nav_button">PRIORIDAD</button>
+            <button onClick={handleClickSRTF} className="nav_button">SRTF</button>
         </div>
-
-      }
-
-      <footer>
-        <h6>
-          By: Crisitan David Lopez Hurtado
-        </h6>
-      </footer>
+      </nav>
+      <main>
+        <Aside procesos={procesos} setProcesos={setProcesos} setMostrarGrafico={setMostrarGrafico} form={form}/>
+        <Chart_template procesos={procesos} mostrarGrafico={mostrarGrafico} form={form}/>
+        
+      </main>
     </>
   )
 }

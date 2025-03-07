@@ -13,5 +13,3 @@ Here some pics for reference:
 ![image](https://github.com/user-attachments/assets/a9ae75e4-00e6-46d8-b7ac-e383670f688e)
 
 ![image](https://github.com/user-attachments/assets/8c930cf2-0931-4e1e-85d3-2d631647fb49)
-
-
